@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 2011 Mc.Spring. All rights reserved.
 # Use of this source code is governed by a BSD-style
-# license that can be found in LICENSE file.
+# license that can be found in the LICENSE file.
 
 set -e
 export BLOG_ROOT=${BLOG_ROOT:-$(cd ..; pwd)}
@@ -11,20 +11,13 @@ then
 	exit 1
 fi
 
+echo; echo %%%% Clean up %%%%; echo
+
+rm -Rf "$BLOG_ROOT"/src/_*
 for i in library controller model view i18n
 do
-	DIR="$BLOG_ROOT"/src/$i
-
-	cd $DIR || exit 1
-
-	if test -f Makefile
-	then
-		echo; echo; echo %%%% make $i %%%%; echo
-
-		gomake
-	fi
+	rm -Rf "$BLOG_ROOT"/src/$i/_*
 done
+rm -f "$BLOG_ROOT"/bin/server
 
-echo; echo; echo %%%% make index %%%%; echo
-cd "$BLOG_ROOT"/src
-gomake
+echo '    Down!    '
