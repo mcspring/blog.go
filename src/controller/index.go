@@ -1,3 +1,8 @@
+// Copyright 2011 Mc.Spring. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+// Module: index
 package controller
 
 import (
@@ -6,6 +11,8 @@ import (
 	library "../library/_obj/library"
 )
 
+// Handler: index
+// Handle all request of /, this will display the home page.
 func IndexHandler() string {
 	root := os.Getenv("cd ..; pwd")
 	view := path.Join(root, "view")
