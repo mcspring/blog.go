@@ -8,7 +8,7 @@ package controller
 import (
 	"os"
 	"path"
-	library "../library/_obj/library"
+	mustache "../library/mustache/_obj/mustache"
 )
 
 // Handler: index
@@ -23,5 +23,5 @@ func IndexHandler() string {
 		"name": "Welcome to blog.go!",
 	}
 
-    return library.RenderFile(file, data)
+    return mustache.RenderFile(file, data)
 }

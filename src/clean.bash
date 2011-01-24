@@ -14,10 +14,27 @@ fi
 echo; echo %%%% Clean up %%%%; echo
 
 rm -Rf "$BLOG_ROOT"/src/_*
+
 for i in library controller model view i18n
 do
+	if [ $i == "library" ]
+	then
+		cd "$BLOG_ROOT"/src/library || exit 1
+
+		for lib in *
+		do
+			if test -d $lib
+			then
+				rm -Rf "$BLOG_ROOT"/src/library/"$lib"/_*
+			fi
+		done
+
+		cd "$BLOG_ROOT"/src 
+	fi
+
 	rm -Rf "$BLOG_ROOT"/src/$i/_*
 done
+
 rm -f "$BLOG_ROOT"/bin/server
 
 echo '    Down!    '

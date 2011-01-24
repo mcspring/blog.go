@@ -11,7 +11,29 @@ then
 	exit 1
 fi
 
-for i in library controller model view i18n
+# first, compile dependence libs
+BLOG_LIBRARY="$BLOG_ROOT"/src/library
+cd $BLOG_LIBRARY || exit 1
+for lib in *
+do
+	if ! test -d $lib
+	then
+		continue
+	fi
+
+	cd "$BLOG_LIBRARY"/"$lib" || exit 1
+
+	if test -f Makefile
+	then
+		echo; echo; echo %%%% make library: $lib %%%%; echo
+
+		gomake
+	fi
+
+	cd $BLOG_LIBRARY
+done
+
+for i in controller model view i18n
 do
 	DIR="$BLOG_ROOT"/src/$i
 

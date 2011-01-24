@@ -4,7 +4,7 @@
 package main
 
 import (
-    "web"
+    web "./library/web/_obj/web"
     controller "./controller/_obj/controller"
 )
 
